@@ -1,0 +1,44 @@
+<!-- LANGUAGE TOGGLE BUTTON -->
+<div style="text-align:center; margin-top:20px;">
+    <button id="toggleLang"
+        style="padding:10px 20px; background:#2d6a4f; color:white;
+               border:none; border-radius:6px; font-size:16px; cursor:pointer;">
+        اردو / English
+    </button>
+</div>
+
+<script>
+    // Detect browser language on first load
+    function autoDetectLanguage() {
+        const userLang = navigator.language || navigator.userLanguage;
+
+        // Urdu detection (ur, ur-PK, ur-IN)
+        if (userLang.toLowerCase().startsWith("ur")) {
+            showUrdu();
+        } else {
+            hideUrdu();
+        }
+    }
+
+    // Show Urdu blocks
+    function showUrdu() {
+        const urduBlocks = document.querySelectorAll(".urdu");
+        urduBlocks.forEach(block => block.style.display = "block");
+    }
+
+    // Hide Urdu blocks
+    function hideUrdu() {
+        const urduBlocks = document.querySelectorAll(".urdu");
+        urduBlocks.forEach(block => block.style.display = "none");
+    }
+
+    // Manual toggle
+    document.getElementById("toggleLang").addEventListener("click", function () {
+        const urduBlocks = document.querySelectorAll(".urdu");
+        const isHidden = urduBlocks[0].style.display === "none";
+        isHidden ? showUrdu() : hideUrdu();
+    });
+
+    // Run auto-detect on page load
+    window.onload = autoDetectLanguage;
+</script>
